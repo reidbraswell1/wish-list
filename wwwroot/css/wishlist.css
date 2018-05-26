@@ -1,5 +1,7 @@
 h1.main-title {
     text-align: center;
+    font-family: 'Kaushan Script', cursive;
+    font-size: 80px;
 }
 div.main-desc-div {
     border: 1px solid red;
