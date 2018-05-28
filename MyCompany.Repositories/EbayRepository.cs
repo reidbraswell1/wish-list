@@ -48,5 +48,13 @@ namespace MyCompany.Repositories
                 return conn.Query<EbayApi>("SELECT id AS ID, api_token AS ApiKey, update_time AS UpdateTime FROM eBay.appKey;");
             }
         }
+        public EbayApi GetEbayApiKey(string key)
+        {
+            using (var conn = _conn)
+            {
+                conn.Open();
+                return conn.Query<EbayApi>("SELECT id AS ID, api_token AS ApiKey, update_time AS UpdateTime FROM eBay.appKey WHERE id=@Key;", new { key }).FirstOrDefault();
+            }
+        }
     }
 }
