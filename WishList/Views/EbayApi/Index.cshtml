@@ -1,0 +1,21 @@
+@model IEnumerable<MyCompany.Shared.EbayApi>
+
+@{
+    ViewData["Title"] = "Ebay Api Token";
+}
+
+<h2>EbayApiList</h2>
+
+<div>
+@foreach(var item in Model) {
+    <h4 style="font-weight:bold">ID = <span style="color:red;font-weight:normal">@Html.DisplayFor(model => item.ID)<span></h4>
+    <h4 style="font-weight:bold">ApiKey = </h4>
+    <textarea readonly cols=100 rows=10 style="color:blue;font-weight:normal;overflow: auto;border: 2px solid black;padding: 3px;">
+    @Html.DisplayFor(model => item.ApiKey);
+    </textarea>
+    <h4 style="font-weight:bold">Date-Time Updated = <span style="color: red; font-weight:normal;">@Html.DisplayFor(model => item.UpdateTime)</span></h4>
+
+     @Html.ActionLink("Edit", "Edit", new { id=item.ID, apiKey=item.ApiKey, updateTime=DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") } ) <span>|</span> 
+     @Html.ActionLink("Details", "Details", new {  apiKey=item.ApiKey, updateTime=item.UpdateTime })
+}
+</div>

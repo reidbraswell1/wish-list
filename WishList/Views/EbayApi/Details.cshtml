@@ -1,7 +1,7 @@
-@model wish_list.Models.EbayApiKey
+@model MyCompany.Shared.EbayApi
 
 @{
-    ViewData["Title"] = "EbayApiDetails";
+    ViewData["Title"] = "Ebay Api Details";
 }
 
 <h2>EbayApiDetails</h2>
@@ -31,6 +31,6 @@
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID, apiKey = Model.ApiKey, updateTime = Model.UpdateTime}) |
     <a asp-action="Index">Back to List</a>
 </div>

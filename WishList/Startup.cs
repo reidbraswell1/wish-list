@@ -11,7 +11,11 @@ using Microsoft.Extensions.DependencyInjection;
 using wish_list.Data;
 using wish_list.Models;
 using wish_list.Services;
-
+using MySql.Data.MySqlClient;
+using Dapper;
+using System.Data;
+using MyCompany.Shared;
+using MyCompany.Repositories;
 namespace wish_list
 {
     public class Startup
@@ -26,6 +30,9 @@ namespace wish_list
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var connString = Configuration.GetConnectionString("MySqlConnection");
+            var connStringDefault = Configuration.GetConnectionString("DefaultConnection");
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -37,6 +44,8 @@ namespace wish_list
             services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddMvc();
+            services.AddTransient<EbayRepository>();
+            services.AddScoped<IDbConnection>(_ => new MySqlConnection(connString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

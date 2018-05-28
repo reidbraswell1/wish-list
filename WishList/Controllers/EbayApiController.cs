@@ -4,21 +4,31 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MyCompany.Repositories;
+using MyCompany.Shared;
 
 namespace wish_list.Controllers
 {
     public class EbayApiController : Controller
     {
+        private readonly EbayRepository _ebayRepo;
+
+        public EbayApiController(EbayRepository ebayRepo)
+        {
+            _ebayRepo = ebayRepo;
+        }
         // GET: EbayApi
         public ActionResult Index()
         {
-            return View();
+            var tokens = _ebayRepo.GetEbayApiKeys();
+            return View(tokens);
         }
 
         // GET: EbayApi/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(string apiKey, DateTime updateTime)
         {
-            return View();
+            var item = new EbayApi { ApiKey = apiKey, UpdateTime = updateTime };
+            return View(item);
         }
 
         // GET: EbayApi/Create
@@ -45,8 +55,9 @@ namespace wish_list.Controllers
         }
 
         // GET: EbayApi/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id, string apiKey, string updateTime)
         {
+            //var model = new EbayApi { ApiKey=apiKey, UpdateTime=DateTime.Now };
             return View();
         }
 
