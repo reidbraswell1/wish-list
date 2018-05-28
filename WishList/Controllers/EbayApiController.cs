@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -57,20 +58,22 @@ namespace wish_list.Controllers
         // GET: EbayApi/Edit/5
         public ActionResult Edit(string id, string apiKey, string updateTime)
         {
-            //var model = new EbayApi { ApiKey=apiKey, UpdateTime=DateTime.Now };
+            //updateTime = DateTime.UtcNow.ToString("MM/dd/yyyy HH:mm:ss");
+            var model = new EbayApi { ApiKey = apiKey, UpdateTime = DateTime.Now };
             return View();
         }
 
         // POST: EbayApi/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(IFormCollection collection)
         {
             try
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction(nameof(Index));
+                var provider = CultureInfo.InvariantCulture;
+                var ebay = new EbayApi { ApiKey=collection["ApiKey"], UpdateTime=DateTime.ParseExact(collection["UpdateTime"],"MM/dd/yyyy HH:mm:ss",provider) };
+                var result = _ebayRepo.UpdateApiKey(ebay);
+                return RedirectToAction("Details",new { id=ebay.ID, apiKey=ebay.ApiKey,updateTime=ebay.UpdateTime});
             }
             catch
             {
