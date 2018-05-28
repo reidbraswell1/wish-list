@@ -15,7 +15,7 @@
     </textarea>
     <h4 style="font-weight:bold">Date-Time Updated = <span style="color: red; font-weight:normal;">@Html.DisplayFor(model => item.UpdateTime)</span></h4>
 
-     @Html.ActionLink("Edit", "Edit", new { id=item.ID, apiKey=item.ApiKey, updateTime=DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") } ) <span>|</span> 
+     @Html.ActionLink("Edit", "Edit", new { id=item.ID, apiKey=item.ApiKey, updateTime=DateTime.UtcNow.ToString("MM/dd/yyyy HH:mm:ss") } ) <span>|</span> 
      @Html.ActionLink("Details", "Details", new {  apiKey=item.ApiKey, updateTime=item.UpdateTime })
 }
 </div>
