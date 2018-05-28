@@ -45,6 +45,7 @@ namespace wish_list
 
             services.AddMvc();
             services.AddTransient<EbayRepository>();
+            services.AddTransient<EbaySearchRepository>();
             services.AddScoped<IDbConnection>(_ => new MySqlConnection(connString));
         }
 
