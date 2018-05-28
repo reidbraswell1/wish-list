@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -26,10 +27,17 @@ namespace MyCompany.Repositories
         }
         public int UpdateApiKey(EbayApi ebay)
         {
-            using (var conn = _conn)
+            try
             {
-                conn.Open();
-                return conn.Execute("UPDATE eBay.appKey SET api_token = @ApiKey WHERE id='api-key'", ebay);
+                using (var conn = _conn)
+                {
+                    conn.Open();
+                    return conn.Execute("UPDATE eBay.appKey SET api_token = @ApiKey WHERE id='api-key'", ebay);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
             }
         }
         public IEnumerable<EbayApi> GetEbayApiKeys()
