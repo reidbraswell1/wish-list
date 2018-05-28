@@ -71,9 +71,9 @@ namespace wish_list.Controllers
             try
             {
                 var provider = CultureInfo.InvariantCulture;
-                var ebay = new EbayApi { ApiKey=collection["ApiKey"], UpdateTime=DateTime.ParseExact(collection["UpdateTime"],"MM/dd/yyyy HH:mm:ss",provider) };
+                var ebay = new EbayApi { ApiKey = collection["ApiKey"], UpdateTime = DateTime.ParseExact(collection["UpdateTime"], "MM/dd/yyyy HH:mm:ss", provider) };
                 var result = _ebayRepo.UpdateApiKey(ebay);
-                return RedirectToAction("Details",new { id=ebay.ID, apiKey=ebay.ApiKey,updateTime=ebay.UpdateTime});
+                return RedirectToAction("Details", new { id = ebay.ID, apiKey = ebay.ApiKey, updateTime = ebay.UpdateTime });
             }
             catch
             {
