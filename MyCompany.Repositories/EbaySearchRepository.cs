@@ -60,12 +60,12 @@ namespace MyCompany.Repositories
                 request.Headers.Add(_header3, _header3Value);
 
                 WebResponse response = request.GetResponse();
+                return response;
             }
             catch (Exception e)
             {
                 throw e;
             }
-            return "";
         }
     }
 
