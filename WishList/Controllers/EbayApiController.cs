@@ -22,6 +22,7 @@ namespace wish_list.Controllers
         public ActionResult Index()
         {
             var tokens = _ebayRepo.GetEbayApiKeys();
+            ViewData["Title"] = "EbayApiList";
             return View(tokens);
         }
 
