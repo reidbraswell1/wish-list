@@ -17,7 +17,8 @@ namespace MyCompany.Repositories
     {
        // private string token;
         private readonly string _apiKey = "api-key";
-        private readonly string _api = "https://api.ebay.com/buy/browse/v1/item_summary/search";
+        private readonly string _apiProduction = "https://api.ebay.com/buy/browse/v1/item_summary/search";
+        private readonly string _apiSandbox = "https://api.sandbox.ebay.com/buy/browse/v1/item_summary/search";
         private readonly string _apiKeyFileName = $"{Environment.CurrentDirectory}/apiKey";
         private readonly EbayRepository _ebayRepo;
 
@@ -36,7 +37,7 @@ namespace MyCompany.Repositories
             var token = GetApiToken(_apiKey);
             this._header1Value = _header1Value + token;
             var options = $"?q={item}&limit=15";
-            var webResponse = HttpGet(_api + options);
+            var webResponse = HttpGet(_apiProduction + options);
             return ParseWebResponse(webResponse);
             //return new List<ItemSummary>();
         }
