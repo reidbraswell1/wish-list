@@ -21,7 +21,7 @@ namespace wish_list.Controllers
         // GET: EbayApi
         public ActionResult Index()
         {
-            var items = _ebaySearchRepo.GetSearchItemResults("table");
+            var items = _ebaySearchRepo.GetSearchItemResults("Tube Tester");
             return View(items);
         }
     }
