@@ -32,7 +32,7 @@ namespace MyCompany.Repositories
                 using (var conn = _conn)
                 {
                     conn.Open();
-                    return conn.Execute("UPDATE eBay.appKey SET api_token = @ApiKey WHERE id='api-key'", ebay);
+                    return conn.Execute("UPDATE eBay.appKey SET api_token = @ApiKey, update_time = @UpdateTime WHERE id='api-key'", ebay);
                 }
             }
             catch (Exception e)
