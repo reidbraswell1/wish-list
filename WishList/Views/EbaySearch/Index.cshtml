@@ -1,0 +1,48 @@
+@model IEnumerable<MyCompany.Shared.ItemSummary>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<style>
+    tr:nth-child(even) {background: #CCC}
+    tr:nth-child(odd) {background: #FFF}
+</style>
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.title)
+            </th>
+            <th>
+               @Html.DisplayNameFor(model => model.price)
+            </th>
+            <th>
+               @Html.DisplayNameFor(model => model.itemWebUrl)
+            </th>
+            <th>Image</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.price.value)
+            </td>
+            <td>
+                <a href="@Html.DisplayFor(modelItem => item.itemWebUrl)" target=_blank>item</a>
+            </td>
+            <td>
+            <img src="@Html.DisplayFor(modelItem => item.image.imageUrl)" alt="" style="max-height: 50px; max-width: 50px;border: 2px solid black;"></img>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
