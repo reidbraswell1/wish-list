@@ -19,9 +19,11 @@ namespace wish_list.Controllers
             _ebaySearchRepo = ebaySearchRepo;
         }
         // GET: EbayApi
-        public ActionResult Index()
+        public ActionResult Index([FromQuery] string item)
         {
-            var items = _ebaySearchRepo.GetSearchItemResults("Tube Tester");
+
+            var items = (string.IsNullOrEmpty(item)) ? _ebaySearchRepo.GetSearchItemResults("Tube Tester") :
+                                                       _ebaySearchRepo.GetSearchItemResults(item);
             return View(items);
         }
     }
