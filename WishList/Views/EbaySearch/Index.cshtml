@@ -7,22 +7,25 @@
     tr:nth-child(even) {background: #CCC}
     tr:nth-child(odd) {background: #FFF}
 </style>
-<h2>Index</h2>
+<h2>Ebay Item Search</h2>
 
+<!--
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+-->
 <table class="table">
-    <thead>
+    <thead
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.title)
+            <th>Item Title
+               <!--
+               @Html.DisplayNameFor(model => model.title)
+               -->
             </th>
-            <th>
+            <th>Item Price
+               <!--
                @Html.DisplayNameFor(model => model.price)
-            </th>
-            <th>
-               @Html.DisplayNameFor(model => model.itemWebUrl)
+               -->
             </th>
             <th>Image</th>
         </tr>
@@ -30,17 +33,16 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
+            <td style="max-width: 200px">Item Title
                 @Html.DisplayFor(modelItem => item.title)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.price.value)
             </td>
             <td>
-                <a href="@Html.DisplayFor(modelItem => item.itemWebUrl)" target=_blank>item</a>
-            </td>
-            <td>
-            <img src="@Html.DisplayFor(modelItem => item.image.imageUrl)" alt="" style="max-height: 50px; max-width: 50px;border: 2px solid black;"></img>
+                <a href="@Html.DisplayFor(modelItem => item.itemWebUrl)" target=_blank>
+                <img src="@Html.DisplayFor(modelItem => item.image.imageUrl)" alt="" style="max-height: 50px; max-width: 50px;border: 3px solid black;"></img>
+                </a>
             </td>
         </tr>
 }
